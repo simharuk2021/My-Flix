@@ -1,5 +1,5 @@
 {
-  "name": "My-FLix",
+  "name": "myflix",
   "version": "1.0.0",
   "description": "a movie API",
   "main": "index.js",
@@ -21,7 +21,8 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0"
