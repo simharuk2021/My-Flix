@@ -2,47 +2,56 @@ const express = require('express'),
   morgan = require('morgan');
 
 const app = express();
-
 let topMovies = [
   {
-    title: 'Midway',
-    Director: 'Roland Emmerich'
+    Title: 'Midway',
+    Director: 'Roland Emmerich',
+    Genre: 'War'
   },
   {
-    title: 'Inception',
-    Director: 'Christopher Nolan'
+    Title: 'Inception',
+    Director: 'Christopher Nolan',
+    Genre: 'Thriller'
   },
   {
-   title: 'Tenet',
-    Director: 'Christopher Nolan'
+   Title: 'Tenet',
+    Director: 'Christopher Nolan',
+    Genre: 'Science Fiction'
   },
    {
-   title: 'The Departed',
-    Director: 'Martin Scorsese'
+   Title: 'The Departed',
+    Director: 'Martin Scorsese',
+    Genre: 'Crime'
   },
   {
-    title: 'Dumb and Dumber 2',
-    Director: 'Bobby Farrelly'
+    Title: 'Dumb and Dumber 2',
+    Director: 'Bobby Farrelly',
+    Genre: 'Comedy'
   },
   {
-    title: 'Happy Gilmore',
-    Director: 'Dennis Dugan'
+    Title: 'Happy Gilmore',
+    Director: 'Dennis Dugan',
+    Genre: 'Comedy'
   },
   {
-    title: 'The Wolf of Wall Street',
-    Director: 'Martin Scorsese'
+    Title: 'The Wolf of Wall Street',
+    Director: 'Martin Scorsese',
+    Genre: 'Crime'
   },
    {
-    title: 'The Greatest Showman',
-    Director: 'Michael Gracey'
+    Title: 'The Greatest Showman',
+    Director: 'Michael Gracey',
+    Genre: 'Drama'
   },
    {
-    title: 'Top Gun',
-    Director: 'Tony Scott'
+    Title: 'Top Gun',
+    Director: 'Tony Scott',
+    Genre: 'War'
   },
    {
-    title: 'Godzilla',
-    Director: 'Gareth Edwards'
+    Title: 'Godzilla',
+    Director: 'Gareth Edwards',
+    Genre: 'Science Fiction'
   }
 ];
 
@@ -54,14 +63,56 @@ app.get('/', (req, res) => {
 
 app.use(express.static('public'));
 
-app.get('/movies', (req, res) => {
-  res.json(topMovies);
+// Gets the list of data about ALL movies
+
+app.get('/topMovies', (req, res) => {
+  res.send('Successful GET request returning data on all the movies') ;
 });
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+//Gets the data of one Movie by Title
+app.get('/topMovies/:Title', (req, res) => {
+  res.send('Successful GET request returning data on one movie by Title') ;
 });
+
+//Gets the data of Movies by Genre
+app.get('/topMovies/Genre/:Title', (req, res) => {
+  res.send('Successful GET request returning movies by Genre') ;
+});
+
+//Gets the data of Director's by Director
+app.get('/Director', (req, res) => {
+  res.send('Successful GET request returning Directors details') ;
+});
+
+//Creates the registration process for a new user
+app.post('/users', (req, res) => {
+  res.send('Successful text message sent indicating new user has registered ') ;
+});
+
+//Allow users to update their user info (username)
+app.put('/users', (req, res) => {
+  res.send('Successful text message sent indicating user details have been changed') ;
+});
+
+//Allow users to add a movie to their list of favorites
+app.put('/users/:favourite', (req, res) => {
+  res.send('Successful text message sent indicating favourite movie has been added') ;
+});
+
+//Allow users to delete a movie to their list of favorites
+app.delete('/users/:favourite', (req, res) => {
+  res.send('Successful text message sent indicating favourite movie has been deleted') ;
+});
+
+//Allow users to deregister
+app.delete('/users', (req, res) => {
+  res.send('Successful text message sent indicating user has deregistered') ;
+});
+
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).send('Something broke!');
+// });
 
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');

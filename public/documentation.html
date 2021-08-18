@@ -4,11 +4,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <title>Documentation</title>
   <meta name="description" content="A simple documentation page"></head>
-
+</head>
 <body>
-  <h1> Documentation </h1>
+  <h1 class ="text-center"> Documentation </h1>
+  <table class="table table-primary table-bordered">
+  <tr>
+  <th>Business Logic</th>
+  <th>URL</th>
+<th>HTTP Method</th>
+  <th>Request Format</th>
+  <th>Response</th>
+  </tr>
+  <tr>
+    <td>Return a list of ALL movies to the user</td>
+    <td>"/topMovies"</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object with movie data</td>
+  </tr>
+  <tr>
+    <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
+    <td>"/topMovies/{Title}"</td>
+    <td>GET</td>
+    <td>none</td>
+ <td>
+ A JSON object with data about a single Movie 
+ {
+    title: 'Midway',
+    Director: 'Roland Emmerich',
+    Genre: 'War'
+  }
+  </td>
+  </tr>
+  <tr>
+    <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+    <td>"/topMovies/{Genre}"</td>
+    <td>GET</td>
+    <td>none</td>
+  <td>
+  A JSON object with data about a genre 
+  {
+    {
+    Genre: 'War'
+    title: 'Midway',
+    Director: 'Roland Emmerich',
+    }
+   
+    {
+      Genre: 'War',
+      title: 'Top Gun',
+    Director: 'Tony Scott'
+    }
+  }
+  </td>
+  </tr>
+  <tr>
+    <td>Return data about a director (bio, birth year, death year) by name</td>
+    <td>"/Director"</td>
+    <td>GET</td>
+    <td>none</td>
+  <td>
+  A JSON object with data about a Director
+  {Name: Roland Emmerich,
+  Birth Year: 1955
+  Death Year: Still Alive
+  Bio: Roland Emmerich is a German film director, screenwriter, and producer who works mostly in the disaster and action genres. 
+  He is the 18th-highest grossing director of all time, with his films generating over $945 million in the United States. 
+  He began his work in the film industry by directing the film The Noah's Ark Principle 
+  as part of his university thesis and also co-founded Centropolis Film Productions in 1985 with his sister. 
+  He is a collector of art and an active campaigner for the lesbian and gay community, 
+  with Emmerich himself being openly gay. He is also a campaigner for an awareness of global warming and equal rights.
+  }
+  </td>
+  </tr>
+  <tr>
+    <td>Allow new users to register</td>
+    <td>"/users"</td>
+    <td>POST</td>
+    <td>A JSON object holding data about the user</td>
+  <td>A JSON object holding data about the user
+  {
+    username: "username",
+    contact: "e-mail"
+  }
+  </td>
+  </tr>
+  <tr>
+    <td>Allow users to update their user info (username)</td>
+    <td>"/users"</td>
+    <td>PUT</td>
+    <td>none</td>
+  <td>A text message indicating the username has been sucessfully updated</td>
+  </tr>
+  <tr>
+    <td>Allow users to add a movie to their list of favorites</td>
+    <td>"/users/favourite"</td>
+    <td>PUT</td>
+    <td>none</td>
+    <td>a text that a movie has been added—more on this later</td>
+  </tr>
+  <tr>
+    <td>Allow users to remove a movie from their list of favorites</td>
+    <td>"/users/favourite"</td>
+    <td>DELETE</td>
+    <td>none</td>
+  <td>a text that a movie has been removed—more on this later</td>
+  </tr>
+  <tr>
+    <td>Allow existing users to deregister </td>
+    <td>"/users/username"</td>
+    <td>DELETE</td>
+    <td>none</td>
+  <td>a text that a user email has been removed—more on this later</td>
+  </tr>
+  </table>
 </body>
 </html>
