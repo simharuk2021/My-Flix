@@ -27,7 +27,7 @@
   </tr>
   <tr>
     <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
-    <td>"/topMovies/{Title}"</td>
+    <td>"/movies/{Title}"</td>
     <td>GET</td>
     <td>none</td>
  <td>
@@ -41,7 +41,7 @@
   </tr>
   <tr>
     <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-    <td>"/topMovies/{Genre}"</td>
+    <td>"movies/{Genre}"</td>
     <td>GET</td>
     <td>none</td>
   <td>
@@ -88,7 +88,7 @@
   <td>A JSON object holding data about the user
   {
     username: "username",
-    contact: "e-mail"
+    contact: "Email"
   }
   </td>
   </tr>
@@ -108,14 +108,14 @@
   </tr>
   <tr>
     <td>Allow users to remove a movie from their list of favorites</td>
-    <td>"/users/favourite"</td>
+    <td>"/users/FavoriteMovies"</td>
     <td>DELETE</td>
     <td>none</td>
   <td>a text that a movie has been removed—more on this later</td>
   </tr>
   <tr>
     <td>Allow existing users to deregister </td>
-    <td>"/users/username"</td>
+    <td>"/users/Username"</td>
     <td>DELETE</td>
     <td>none</td>
   <td>a text that a user email has been removed—more on this later</td>

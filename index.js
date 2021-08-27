@@ -66,17 +66,23 @@ app.use(express.static('public'));
 // Gets the list of data about ALL movies
 
 app.get('/topMovies', (req, res) => {
-  res.send('Successful GET request returning data on all the movies') ;
+  // res.send('Successful GET request returning data on all the movies');
+  res.json(topMovies);
 });
+
 
 //Gets the data of one Movie by Title
 app.get('/topMovies/:Title', (req, res) => {
-  res.send('Successful GET request returning data on one movie by Title') ;
+  // res.send('Successful GET request returning data on one movie by Title') ;
+  const found = topMovies.find(movie => movie.Title===req.params.Title);
+  res.json(found);
 });
 
 //Gets the data of Movies by Genre
 app.get('/topMovies/Genre/:Title', (req, res) => {
-  res.send('Successful GET request returning movies by Genre') ;
+  const found = topMovies.filter(movie => movie.Genre===req.params.Title);
+  res.json(found);
+  // res.send('Successful GET request returning movies by Genre') ;
 });
 
 //Gets the data of Director's by Director
