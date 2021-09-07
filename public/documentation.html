@@ -23,60 +23,64 @@
     <td>"/movies"</td>
     <td>GET</td>
     <td>None</td>
-    <td>A JSON object with movie data</td>
+    <td>A JSON object with movie data and Arrays with Object ID's for Genre and Description</td>
   </tr>
   <tr>
-    <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
+    <td>Return data (ID, Actors, Title, description, genre[], director[], image URL, whether it’s featured or not) about a single movie by title to the user</td>
     <td>"/movies/{Title}"</td>
     <td>GET</td>
     <td>none</td>
  <td>
  A JSON object with data about a single Movie 
- {
-    title: 'Midway',
-    Director: 'Roland Emmerich',
-    Genre: 'War'
-  }
+{
+"Actors": [],
+    "_id": "6126523954f6c297aec5159e",
+    "Title": "Midway",
+    "Description": "Centers on the Battle of Midway, a clash between the American fleet and the Imperial Japanese Navy which marked a pivotal turning point in the Pacific Theater during WWII. The film, based on the real-life events of this heroic feat, tells the story of the leaders and soldiers who used their instincts, fortitude and bravery to overcome the odds.",
+    "ImagePath": "https://www.imdb.com/title/tt6924650/mediaviewer/rm3946167041/",
+    "Featured": true,
+    "Genre": [
+        "61373e906af4f5693de54a3f"
+    ],
+    "Director": [
+        "6137419b6af4f5693de54a42"
+    ]
+}
   </td>
   </tr>
   <tr>
     <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-    <td>"movies/{Genre}"</td>
+    <td>"/genre/{Name}"</td>
     <td>GET</td>
     <td>none</td>
   <td>
-  A JSON object with data about a genre 
-  {
-    {
-    Genre: 'War'
-    title: 'Midway',
-    Director: 'Roland Emmerich',
-    }
-   
-    {
-      Genre: 'War',
-      title: 'Top Gun',
-    Director: 'Tony Scott'
-    }
-  }
+  A JSON object with data from the genres collection 
+   {
+    "_id": "61373fb56af4f5693de54a40",
+    "Name": "Science Fiction",
+    "Description": "Science fiction films are often speculative in nature, and often include key supporting elements of science and technology. 
+    However, as often as not the 'science' in a Hollywood science fiction movie can be considered pseudo-science, relying primarily on atmosphere and quasi-scientific artistic fancy than facts and conventional scientific theory. The definition can also vary depending on the viewpoint of the observer."
+   }
   </td>
   </tr>
   <tr>
     <td>Return data about a director (bio, birth year, death year) by name</td>
-    <td>"/Director"</td>
+    <td>"/Director/{Name}"</td>
     <td>GET</td>
     <td>none</td>
   <td>
-  A JSON object with data about a Director
-  {Name: Roland Emmerich,
-  Birth Year: 1955
-  Death Year: Still Alive
-  Bio: Roland Emmerich is a German film director, screenwriter, and producer who works mostly in the disaster and action genres. 
+  A JSON object with data from the Directors collection
+  {
+  _ID: "6137419b6af4f5693de54a42"
+  "Name": "Roland Emmerich",
+  "Bio": "Roland Emmerich is a German film director, screenwriter, and producer who works mostly in the disaster and action genres. 
   He is the 18th-highest grossing director of all time, with his films generating over $945 million in the United States. 
   He began his work in the film industry by directing the film The Noah's Ark Principle 
   as part of his university thesis and also co-founded Centropolis Film Productions in 1985 with his sister. 
   He is a collector of art and an active campaigner for the lesbian and gay community, 
-  with Emmerich himself being openly gay. He is also a campaigner for an awareness of global warming and equal rights.
+  with Emmerich himself being openly gay. He is also a campaigner for an awareness of global warming and equal rights."
+  "Birth Year": "1955"
+  Death Year: ""
   }
   </td>
   </tr>
@@ -85,40 +89,76 @@
     <td>"/users"</td>
     <td>POST</td>
     <td>A JSON object holding data about the user</td>
-  <td>A JSON object holding data about the user
+    <td>
+    A JSON object containing the registered user's data
   {
-    username: "username",
-    contact: "Email"
-  }
+    "Username": "Davinderhao2",
+    "Password": "davihao2",
+    "Email": "davidav2@email.com"
+  } 
   </td>
   </tr>
   <tr>
-    <td>Allow users to update their user info (username)</td>
-    <td>"/users"</td>
+    <td>Allow users to update their user info</td>
+    <td>"/users/{username}"</td>
     <td>PUT</td>
-    <td>none</td>
-  <td>A text message indicating the username has been sucessfully updated</td>
+    <td>A JSON object holding data about the user to be updated</td>
+  <td>
+  A JSON object containing the updated data
+  {
+    "Username": "testuser",
+    "Password": "password1",
+    "Email": "testytesty2@test.com",
+    "Birthday": "27/11/2001",
+    "FavoriteMovies": [],
+    "_id": "613783c4aa2da02be5695e24",
+    "__v": 0
+  }  
+  </td>
   </tr>
   <tr>
     <td>Allow users to add a movie to their list of favorites</td>
-    <td>"/users/FavoriteMovies"</td>
+    <td>"/users/{username}/FavoriteMovies/{Movie ObjectID}"</td>
     <td>PUT</td>
     <td>none</td>
-    <td>a text that a movie has been added—more on this later</td>
+    <td>
+    A JSON object containing the movie ID which has been pushed to the FavoriteMovies Array
+  {
+    "_id": "613783c4aa2da02be5695e24",
+    "Username": "testuser",
+    "Password": "password1",
+    "Email": "testytesty2@test.com",
+    "Birthday": "27/11/2001",
+    "FavoriteMovies": [
+        "6126523954f6c297aec5159e"
+    ],
+    "__v": 0
+  }
+</td>
   </tr>
   <tr>
     <td>Allow users to remove a movie from their list of favorites</td>
-    <td>"/users/FavoriteMovies"</td>
+    <td>"/users/{username}/FavoriteMovies/{Movie ObjectID}"</td>
     <td>DELETE</td>
     <td>none</td>
-  <td>a text that a movie has been removed—more on this later</td>
+  <td>
+   A JSON object containing the movie ID which has been pulled from the FavoriteMovies Array
+  {
+    "_id": "613783c4aa2da02be5695e24",
+    "Username": "testuser",
+    "Password": "password1",
+    "Email": "testytesty2@test.com",
+    "Birthday": "27/11/2001",
+    "FavoriteMovies": [],
+    "__v": 0
+}</td>
   </tr>
   <tr>
     <td>Allow existing users to deregister </td>
-    <td>"/users/Username"</td>
+    <td>"/users/{username}"</td>
     <td>DELETE</td>
     <td>none</td>
-  <td>a text that a user email has been removed—more on this later</td>
+  <td> a string indicating "user was deleted"</td>
   </tr>
   </table>
 </body>
