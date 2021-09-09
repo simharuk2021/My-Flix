@@ -13,6 +13,12 @@ morgan = require('morgan');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+
+const passport = require('passport');
+require('./passport');
+let auth = require('./auth')(app);
+
 //use of logger module
 app.use(morgan('common'));
 //home page url
@@ -37,14 +43,14 @@ app.get('/movies/:Title', (req, res) => {
 
 
 //Gets the data of all movies
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', {session: false}), (req, res) => {
   Movies.find()
   .then ((movies) => {
     res.status(201).json(movies);
   })
- .catch((err) => {
-    console.error(err);
-  res.status(500).send('Error: ' + err);
+ .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
   });
 });
 
