@@ -12,12 +12,15 @@ const express = require('express'),
 morgan = require('morgan');
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+// app.use(express.urlencoded({extended: true}));
+(bodyParser = require("body-parser")), (uuid = require("uuid"));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
-let auth = require('./auth')(app);
 
 //use of logger module
 app.use(morgan('common'));

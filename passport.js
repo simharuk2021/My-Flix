@@ -11,7 +11,7 @@ passport.use(new LocalStrategy({
     usernameField: 'Username',
     passwordField: 'Password'
 }, (username, password, callback) => {
-   console.log(username + '  '+ password);
+   console.log(username + '  ' + password);
    Users.findOne({ Username: username}, (error, user) => {
      if (error) {
          console.log(error);
@@ -35,7 +35,7 @@ secretOrKey: 'your_jwt_secret'
        .then((user) => {
            return callback(null, user);
        })
-       .catch((error) =>{
+       .catch((error) => {
            return callback(error)
        });
    }));
