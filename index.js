@@ -18,6 +18,24 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const {check, validationResult } = require('express-validator');
+
+const cors = require('cors');
+
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback (null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+  //if a specific origin isn't found in the list of allowedOrigins
+  let message ='The CORS policy for this application does not allow access from origin' + origin;
+  return callback (new Error(message ), false);    
+    }
+    return callback(null, true)
+  }
+}));
+
 let auth = require('./auth')(app);
 const passport = require('passport');
 // require('./passport');
@@ -105,7 +123,22 @@ app.get('/users/:Username', passport.authenticate('jwt', {session: false}), (req
 });
 
 //Creates the registration process for a new user
-app.post('/users', (req, res) => {
+app.post('/users', 
+//validation logic 
+[check('Username' , 'Username is required').isLength({min:5}),
+check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+check('Password', 'Password is required').not().isEmpty(),
+check('Email', 'Email does not appear to be valid').isEmail(),
+check('Birthday', 'Birthday should be in ISO format yyyy/mm/dd format').isDate()
+], (req, res) => {
+//check the object for validation errors
+let errors = validationResult(req);
+
+if (!errors.isEmpty()) {
+  return res.status(422).json({ errors: errors.array() });
+}
+
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username})
   .then((user) => {
     if (user) {
@@ -114,7 +147,7 @@ app.post('/users', (req, res) => {
           Users
           .create({ 
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
@@ -201,9 +234,12 @@ app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (
 });
 
 
-
-
-
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080.');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
 });
+
+
+// app.listen(8080, () => {
+//   console.log('Your app is listening on port 8080.');
+// });
