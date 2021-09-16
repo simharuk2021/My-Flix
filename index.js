@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
-mongoose.connect('mongodb://localhost:27017/MyFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/MyFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://MyFlixDBAdmin:Simonhart1*@cluster0.rcx5b.mongodb.net/MyFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI , { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 const Movies = Models.Movie;
 const Users = Models.User;

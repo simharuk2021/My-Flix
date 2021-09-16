@@ -1,1 +1,5 @@
 mongoimport --uri mongodb+srv://MyFlixDBAdmin:Simonhart1*@cluster0.rcx5b.mongodb.net/MyFlixDB --collection movies --type json --file ../exported_collections/movies.json
+
+mongoexport --uri mongodb+srv://MyFlixDBAdmin:Simonhart1*@cluster0.rcx5b.mongodb.net/MyFlixDB --collection movies --type json --out ../exported_collections/movies.json
+
+mongoexport --collection=movies --db=MyFlixDB --out=movies.json
