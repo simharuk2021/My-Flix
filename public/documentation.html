@@ -20,14 +20,14 @@
   </tr>
   <tr>
     <td>Return a list of ALL movies to the user</td>
-    <td>"/movies"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/movies"</td>
     <td>GET</td>
     <td>None</td>
     <td>A JSON object with movie data and Arrays with Object ID's for Genre and Description</td>
   </tr>
   <tr>
     <td>Return data (ID, Actors, Title, description, genre[], director[], image URL, whether it’s featured or not) about a single movie by title to the user</td>
-    <td>"/movies/{Title}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/movies/Gladiator"</td>
     <td>GET</td>
     <td>none</td>
  <td>
@@ -50,7 +50,7 @@
   </tr>
   <tr>
     <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-    <td>"/genre/{Name}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/genres/Action"</td>
     <td>GET</td>
     <td>none</td>
   <td>
@@ -65,7 +65,7 @@
   </tr>
   <tr>
     <td>Return data about a director (bio, birth year, death year) by name</td>
-    <td>"/Director/{Name}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/directors/Roland Emmerich"</td>
     <td>GET</td>
     <td>none</td>
   <td>
@@ -86,7 +86,7 @@
   </tr>
   <tr>
     <td>Allow new users to register</td>
-    <td>"/users"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/users"</td>
     <td>POST</td>
     <td>A JSON object holding data about the user</td>
     <td>
@@ -100,7 +100,7 @@
   </tr>
   <tr>
     <td>Allow users to update their user info</td>
-    <td>"/users/{username}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/users/testuser"</td>
     <td>PUT</td>
     <td>A JSON object holding data about the user to be updated</td>
   <td>
@@ -118,7 +118,7 @@
   </tr>
   <tr>
     <td>Allow users to add a movie to their list of favorites</td>
-    <td>"/users/{username}/FavoriteMovies/{Movie ObjectID}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/users/testuser/FavoriteMovies/6126523954f6c297aec5159e"</td>
     <td>PUT</td>
     <td>none</td>
     <td>
@@ -138,7 +138,7 @@
   </tr>
   <tr>
     <td>Allow users to remove a movie from their list of favorites</td>
-    <td>"/users/{username}/FavoriteMovies/{Movie ObjectID}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/users/testuser/FavoriteMovies/6126523954f6c297aec5159e"</td>
     <td>DELETE</td>
     <td>none</td>
   <td>
@@ -155,7 +155,7 @@
   </tr>
   <tr>
     <td>Allow existing users to deregister </td>
-    <td>"/users/{username}"</td>
+    <td>"https://my-movies-souperapp.herokuapp.com/users/testuser2"</td>
     <td>DELETE</td>
     <td>none</td>
   <td> a string indicating "user was deleted"</td>
