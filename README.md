@@ -28,9 +28,10 @@ https://my-movies-souperapp.herokuapp.com/
 ## Getting Started
 
 The link takes the user to a home page which is to be developed further in the next achievement by using REACT NATIVE. 
+As the project is primarily the architecture for the API please see the documentation file for further details about endpoints and http responses.
 
+https://my-movies-souperapp.herokuapp.com/documentation.html
 
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 

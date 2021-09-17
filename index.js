@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 
 // mongoose.connect('mongodb://localhost:27017/MyFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.connect('mongodb+srv://MyFlixDBAdmin:Simonhart1*@cluster0.rcx5b.mongodb.net/MyFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI , { useNewUrlParser: true, useUnifiedTopology: true });
 
 
@@ -27,17 +26,7 @@ const cors = require('cors');
 
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback (null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-  //if a specific origin isn't found in the list of allowedOrigins
-  let message ='The CORS policy for this application does not allow access from origin' + origin;
-  return callback (new Error(message ), false);    
-    }
-    return callback(null, true)
-  }
-}));
+app.use(cors());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
