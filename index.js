@@ -56,7 +56,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', {session: false}),(req, r
 
 
 //Gets the data of all movies
-app.get('https://my-movies-souperapp.herokuapp.com/movies', 
+app.get('/movies', 
 // , passport.authenticate('jwt', {session: false}), 
 function (req, res) 
 // => 
