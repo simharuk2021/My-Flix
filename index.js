@@ -24,7 +24,7 @@ const {check, validationResult } = require('express-validator');
 
 const cors = require('cors');
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://testsite.com'];
 
 app.use(cors());
 
@@ -56,7 +56,11 @@ app.get('/movies/:Title', passport.authenticate('jwt', {session: false}),(req, r
 
 
 //Gets the data of all movies
-app.get('/movies', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('https://my-movies-souperapp.herokuapp.com/movies', 
+// , passport.authenticate('jwt', {session: false}), 
+function (req, res) 
+// => 
+{
   Movies.find()
   .then ((movies) => {
     res.status(201).json(movies);
