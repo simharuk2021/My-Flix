@@ -44,7 +44,7 @@ app.use(express.static('public'));
 
 //Gets the data of one Movie by Title
 app.get('/movies/:Title', passport.authenticate('jwt', {session: false}),(req, res) => {
- Movies.findOne({ Title: req.params.Title }).populate('Director', 'Genre')
+ Movies.findOne({ Title: req.params.Title }).populate('Director').populate('Genre')
   .then((movie) => {
     res.json(movie);
   })
