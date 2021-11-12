@@ -159,14 +159,14 @@ if (!errors.isEmpty()) {
     });
 }); 
 
-app.put('/users/:Username',  passport.authenticate('jwt', {session: false}) 
+app.put('/users/:Username', [check('Username' , 'Username is required').isLength({min:5}),
+check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+check('Password', 'Password is required').not().isEmpty(),
+check('Email', 'Email does not appear to be valid').isEmail(),
+check('Birthday', 'Birthday should be in ISO format yyyy/mm/dd format').isDate()
+],  passport.authenticate('jwt', {session: false}) 
 
-    [check('Username' , 'Username is required').isLength({min:5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Birthday', 'Birthday should be in ISO format yyyy/mm/dd format').isDate()
-    ], (req, res ) => {
+   , (req, res ) => {
       
     let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOneAndUpdate({ Username: req.params.Username }, {
