@@ -159,7 +159,9 @@ if (!errors.isEmpty()) {
     });
 }); 
 
-app.put('/users/:Username', [check('Username' , 'Username is required').isLength({min:5}),
+app.put('/users/:Username', 
+
+[check('Username' , 'Username is required').isLength({min:5}),
 check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
 check('Password', 'Password is required').not().isEmpty(),
 check('Email', 'Email does not appear to be valid').isEmail(),
@@ -173,7 +175,7 @@ check('Birthday', 'Birthday should be in ISO format yyyy/mm/dd format').isDate()
     $set:
     {
       Username: req.body.Username,
-      Password: req.body.hashedPassword,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
