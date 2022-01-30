@@ -128,7 +128,7 @@ to initiliase a project and create a package.json file `npm init`
 
 to install express `npm install --save express`
 
-to install body parser `npm install --save body-parser'
+to install body parser `npm install --save body-parser`
 
 to install morgan (logger) `npm install morgan --save`
 
@@ -146,7 +146,7 @@ the following are authentication, security and validation packages used within t
 
 `npm install cors`
 
-'npm install bcrypt'
+`npm install bcrypt`
 
 `npm install express-validator`
 
