@@ -112,11 +112,45 @@ Additional issues around security were addressed using built in modules provided
 
 Initially the data in the app was accessed through a local host server but this was changed to a sandbox cluster created using Atlas.  This enabled the app to be deployed using https and for the data to be imported to the server.
 
+The following endpoints fulfill these functions outlined
+
+| Function | URL |
+| --- | --- |
+| Register a new User at | https://my-movies-souperapp.herokuapp.com/users|
+| Login | https://my-movies-souperapp.herokuapp.com/login?<Username&Password> (Simon & HashedPassword|
+| Get all User Data | https://my-movies-souperapp.herokuapp.com/users |
+| Get User Details by Username | https://my-movies-souperapp.herokuapp.com/users/Username (replace Username e.g. Simon) |
+| Get All Movies | https://my-movies-souperapp.herokuapp.com/movies |
+| Get Movie Data by Title | https://my-movies-souperapp.herokuapp.com/movies/MovieTitle (replace MovieTitle e.g. Gladiator) |
+| Get Genre by Name | https://my-movies-souperapp.herokuapp.com/genres/genreName (replace GenreName e.g. Action) |
+| Get Director Details | https://my-movies-souperapp.herokuapp.com/directors/directorName ( replace directorName e.g. Ridley Scott) |
+| Add a movie to Favorites | https://my-movies-souperapp.herokuapp.com/users/Username/FavoriteMovies/MovieID (replace Username and MovieID e.g. Simon & 61334bd283ceee2f2ae4f25b)
+| Delete a movie from Favorites | https://my-movies-souperapp.herokuapp.com/usersUsername/FavoriteMovies/MovieID (replace Username and MovieID e.g. Simon & 61334bd283ceee2f2ae4f25b)
+| Deregister a User by Username | https://my-movies-souperapp.herokuapp.com/users/Username (replace Username e.g. Simon)
+
+The endpoints all send different requests as follows:
+
+| Action | HTTPS Request |
+| --- | --- |
+| Register  | POST |
+| Login | POST |
+| Get all User Data | GET |
+| Get UserData by Username | GET |
+| Get All Movies | GET |
+| Get Movie Data by Title | GET |
+| Get Genre Name | GET |
+| Get Director Details | GET |
+| Add a movie to Favorites | POST |
+| Delete a movie from Favorites | DELETE  |
+| Deregister a User by Username | DELETE |
+| Update User (same endpoint as Register but different HTTP request) | PUT |
+
+See the documentation file https://my-movies-souperapp.herokuapp.com\documentation.html for the list of HTTP responses.
+
 
 ### Prerequisites
 
-There are no prerequisites other than to be able to navigate to the home page (https://my-movies-souperapp.herokuapp.com/)
-
+As the API represents the logic layer a working knowledge of Node.Js and related middleware would reduce the level of abstraction.  A basic homepage indicating active hosted status is available at https://my-movies-souperapp.herokuapp.com
 
 ### Installation
 install node (https://github.com/coreybutler/nvm-windows/releases/download/1.1.7/nvm-setup.zip)
